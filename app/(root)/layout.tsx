@@ -1,12 +1,10 @@
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+import Navbar from '@/app/components/Navbar'
+
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <>
-      <h1 className="text-3xl">Root Navbar</h1>
+    <main className="font-work-sans">
+      <Navbar />
       {children}
-    </>
+    </main>
   );
 }
