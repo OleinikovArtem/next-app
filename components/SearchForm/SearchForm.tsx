@@ -23,6 +23,4 @@ const SearchForm = ({ query }: SearchFormProps) => {
   )
 }
 
-// test commit with new credentials
-
 export default SearchForm
