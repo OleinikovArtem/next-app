@@ -1,7 +1,8 @@
 import SearchForm from "@/components/SearchForm"
-import StartupCard from '@/components/StartupCard'
+import StartupCard, { StartupCardType } from "@/components/StartupCard"
 
-import { StartupCardType } from "@/types"
+import { client } from "@/sanity/lib/client"
+import { STARTUPS_QUERY } from "@/sanity/lib/queries"
 
 type HomePageProps = {
   searchParams: Promise<{ query?: string}>
@@ -10,16 +11,10 @@ type HomePageProps = {
 export default async function HomePage({ searchParams }: HomePageProps) {
   const query = (await searchParams).query
 
-  const posts: StartupCardType[] = [{
-    _createdAt: new Date(),
-    _id: 1,
-    views: 55,
-    author: { _id: 1, name: "Adrian" },
-    description: "This is a description.",
-    category: "Robots",
-    title: "We Robots",
-    image: "https://images.unsplash.com/photo-1724452588657-9ab0f8865a2e?q=80&w=2960&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-  }]
+  const posts = await client.fetch<StartupCardType[]>(
+    STARTUPS_QUERY,
+    { search: query || null },
+  )
 
   return (
     <>
@@ -43,5 +38,5 @@ export default async function HomePage({ searchParams }: HomePageProps) {
         </ul>
       </section>
     </>
-  );
+  )
 }

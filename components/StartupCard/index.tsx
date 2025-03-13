@@ -1,1 +1,1 @@
-export { default } from './StartupCard'
+export { default, type StartupCardType } from "./StartupCard"

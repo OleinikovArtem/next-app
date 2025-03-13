@@ -13,3 +13,7 @@ pnpm dev
 # or
 bun dev
 ```
+
+```cmd
+npx sanity@latest typegen generate
+```
