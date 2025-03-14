@@ -13,7 +13,7 @@ const StartupCard = ({ post }: {  post: StartupCardType }) => {
   const { _createdAt, _id, views, author, description, category, title, image } = post
 
   return (
-    <li className="startup-card group">
+    <li className="startup-card group flex flex-col">
       <div className="flex-between">
         <p className="startup-card_date">{formatDate(_createdAt)}</p>
         <div className="flex gap-1.5">
@@ -25,10 +25,10 @@ const StartupCard = ({ post }: {  post: StartupCardType }) => {
       <div className="flex-between mt-5 gap-5">
         <div className="flex-1">
           <Link href={`/user/${author?._id}`}>
-            <p className="text-16-medium line-calm-1">{author?.name}</p>
+            <p className="text-16-medium line-clamp-1">{author?.name}</p>
           </Link>
-          <Link href={`/startup/${_id}`} >
-            <h3 className="text-26-semibold line-calm-1">{title}</h3>
+          <Link href={`/startup/${_id}`}>
+            <h3 className="text-26-semibold line-clamp-2">{title}</h3>
           </Link>
         </div>
         <Link href={`/user/${author?._id}`}>
@@ -40,18 +40,23 @@ const StartupCard = ({ post }: {  post: StartupCardType }) => {
         </Link>
       </div>
 
-      <Link href={`/startup/${_id}`}>
-        <p className="startup-card_desc">{description}</p>
-        <img src={image} alt="placeholder" className="startup-card_img" />
-      </Link>
-
-      <div className="flex-between gap-3 mt-5">
-        <Link href={`/?query=${category?.toLowerCase()}`}>
-          <p className="text-16-medium">{category}</p>
+      <div className="flex flex-col flex-1 justify-end mt-5">
+        <Link href={`/startup/${_id}`}>
+          <p className="startup-card_desc">{description}</p>
         </Link>
-        <Button className="startup-card_btn" asChild>
-          <Link href={`/startup/${_id}`}>Details</Link>
-        </Button>
+
+        <Link href={`/startup/${_id}`}>
+          <img src={image} alt="placeholder" className="startup-card_img" />
+        </Link>
+
+        <div className="flex justify-between items-center mt-5">
+          <Link href={`/?query=${category?.toLowerCase()}`}>
+            <p className="text-16-medium">{category}</p>
+          </Link>
+          <Button className="startup-card_btn" asChild>
+            <Link href={`/startup/${_id}`}>Details</Link>
+          </Button>
+        </div>
       </div>
     </li>
   )
