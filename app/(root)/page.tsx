@@ -10,11 +10,8 @@ type HomePageProps = {
 
 export default async function HomePage({ searchParams }: HomePageProps) {
   const query = (await searchParams).query
-
-  const { data: posts } = await sanityFetch({
-    query: STARTUPS_QUERY,
-    params: { search: query || null },
-  })
+  const params = { search: query || null }
+  const { data: posts } = await sanityFetch({ query: STARTUPS_QUERY, params })
 
 
   return (
