@@ -9,12 +9,12 @@ import { formatDate } from "@/lib/utils"
 import Link from "next/link"
 import Image from "next/image"
 
-import markdownit from "markdown-it"
+import MarkdownIt from "markdown-it"
 import { Skeleton } from "@/components/ui/skeleton"
 import View from "@/components/View"
 import StartupCard, { StartupCardType } from "@/components/StartupCard"
 
-const md = markdownit()
+const md = new MarkdownIt()
 
 export const experimental_ppr = true
 
@@ -26,7 +26,6 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
     client.fetch(PLAYLIST_BY_SLUG_QUERY, { slug: "editor-picks" }),
   ])
 
-  console.log('editorPosts', editorPosts)
   if (!post) return notFound()
 
   const parsedContent = md.render(post?.pitch || "")

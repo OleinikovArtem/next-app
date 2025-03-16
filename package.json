@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -30,6 +30,7 @@
     "sanity": "^3.79.0",
     "sanity-plugin-markdown": "^5.1.0",
     "server-only": "^0.0.1",
+    "slugify": "^1.6.6",
     "sonner": "^2.0.1",
     "styled-components": "^6.1.15",
     "tailwind-merge": "^3.0.2",
