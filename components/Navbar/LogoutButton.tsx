@@ -1,12 +1,14 @@
 import { signOut } from '@/auth'
+import { LogOut } from 'lucide-react'
 
 const LogoutButton = () => {
   return (
-    <form action={async () => {
+    <form className="cursor-pointer"  action={async () => {
       "use server"
       await signOut({ redirectTo: "/" })
     }}>
-      <button type="submit">Logout</button>
+      <button type="submit" className="max-sm:hidden">Logout</button>
+      <LogOut className="sm:hidden text-red-500" />
     </form>
   )
 }

@@ -3,8 +3,9 @@ import Image from "next/image"
 import { EyeIcon } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
+import { Skeleton } from "@/components/ui/skeleton"
 
-import { formatDate } from "@/lib/utils"
+import { cn, formatDate } from "@/lib/utils"
 import { Author, Startup } from "@/sanity/types"
 
 export type StartupCardType = Omit<Startup, "author"> & { author?: Author }
@@ -34,8 +35,8 @@ const StartupCard = ({ post }: {  post: StartupCardType }) => {
         <Link href={`/user/${author?._id}`}>
           <Image
             className="rounded-full"
-            src="https://placehold.co/48x48"
-            alt="placeholder"
+            src={author?.image || "https://placehold.co/48x48"}
+            alt={author?.name!}
             width={48} height={48} />
         </Link>
       </div>
@@ -61,5 +62,15 @@ const StartupCard = ({ post }: {  post: StartupCardType }) => {
     </li>
   )
 }
+
+export const StartupCardSkeleton = () => (
+  <>
+    {[0, 1, 2, 3, 4].map((index: number) => (
+      <li key={cn("skeleton", index)}>
+        <Skeleton className="startup-card_skeleton" />
+      </li>
+    ))}
+  </>
+);
 
 export default StartupCard

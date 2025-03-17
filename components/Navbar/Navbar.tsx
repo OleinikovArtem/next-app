@@ -1,8 +1,11 @@
-import Link from 'next/link'
-import Image from 'next/image'
-import { auth } from '@/auth'
-import LoginButton from '@/components/Navbar/LoginButton'
-import LogoutButton from '@/components/Navbar/LogoutButton'
+import Link from "next/link"
+import Image from "next/image"
+import { auth } from "@/auth"
+import LoginButton from "@/components/Navbar/LoginButton"
+import LogoutButton from "@/components/Navbar/LogoutButton"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+
+import { BadgePlus } from "lucide-react"
 
 const Navbar = async () => {
   const session = await auth()
@@ -18,13 +21,20 @@ const Navbar = async () => {
           {session && session.user ? (
             <>
               <Link href="/startup/create" >
-                <span>Create</span>
+                <span className="max-sm:hidden">Create</span>
+                <BadgePlus className="sm:hidden"  />
               </Link>
 
               <LogoutButton />
 
-              <Link href={`/user/${session?.user?.id}`} >
-                <span>{session?.user?.name}</span>
+              <Link href={`/user/${session?.id}`}>
+                <Avatar className="size-10">
+                  <AvatarImage
+                    src={session?.user?.image || ""}
+                    alt={session?.user?.name || ""}
+                  />
+                  <AvatarFallback>AV</AvatarFallback>
+                </Avatar>
               </Link>
             </>
           ) : <LoginButton /> }
