@@ -9,7 +9,7 @@ import Image from "next/image"
 import MarkdownIt from "markdown-it"
 import { Skeleton } from "@/components/ui/skeleton"
 import View from "@/components/View"
-import StartupCard, { StartupCardType } from "@/components/StartupCard"
+import { StartupCardType } from "@/components/StartupCard"
 
 const md = new MarkdownIt()
 
